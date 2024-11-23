@@ -144,7 +144,6 @@ public class Customer extends User{
         cart.clearCart();
         this.specialRequest="";
         System.out.println("Order placed successfully");
-        FileHandling.saveOrderHistory(this.getEmail(), order);
         displayBill(order);
     }
 

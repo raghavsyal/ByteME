@@ -159,6 +159,10 @@ public class Admin extends User{
     }
 
     public void completeOrder(List<Orders> pendingOrdersFromMain, List<Orders> completeOrdersFromMain, List<Customer> customersFromMain){
+        if (pendingOrdersFromMain.isEmpty()) {
+            System.out.println("No pending orders to complete.");
+            return;
+        }
 //        Scanner sc = new Scanner(System.in);
 //        System.out.print("Enter customer name to complete the order: ");
 //        String name = sc.next();
@@ -190,6 +194,7 @@ public class Admin extends User{
             pendingOrdersFromMain.remove(orderProcess);
             completeOrdersFromMain.add(orderProcess);
             System.out.println("Order for " + orderProcess.getCustomerName() + " has been completed.");
+            FileHandling.saveOrderHistory(orderProcess.getCustomerName(), orderProcess);
         }
 
 
