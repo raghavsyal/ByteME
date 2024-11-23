@@ -11,8 +11,12 @@ public class FileHandling {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(userFile, true))) {
             writer.write("Order details for " + order.getCustomerName() + ":\n");
+
             for (Map.Entry<Item, Integer> entry : order.getItemQuantity().entrySet()) {
-                writer.write("Item: " + entry.getKey().getName() + ", Quantity: " + entry.getValue());
+                Item item = entry.getKey();
+                int quantity = entry.getValue();
+                int itemTotal = quantity * item.getPrice();
+                writer.write("Item: " + entry.getKey().getName() + ", Quantity: " + entry.getValue() + ", Total: " + itemTotal);
                 writer.newLine();
             }
             writer.write("Special Request: " + (order.getSpecialRequest() != null ? order.getSpecialRequest() : "None"));
