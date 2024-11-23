@@ -140,9 +140,11 @@ public class Customer extends User{
         }
         Orders order = new Orders(this.getEmail(), new TreeMap<>(cart.getItemQuantity()), specialRequest);
         pendingOrders.add(order);
+        System.out.println("Placing order for " + this.getEmail());
         cart.clearCart();
         this.specialRequest="";
         System.out.println("Order placed successfully");
+        FileHandling.saveOrderHistory(this.getEmail(), order);
         displayBill(order);
     }
 

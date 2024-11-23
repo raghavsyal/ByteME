@@ -1,0 +1,30 @@
+package com.university.byteme;
+
+import java.io.*;
+import java.util.List;
+import java.util.Map;
+
+public class FileHandling {
+    public static void saveOrderHistory(String email, Orders order) {
+        File directory = new File("orderHistory");
+        File userFile = new File(directory, email + ".txt");
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(userFile, true))) {
+            writer.write("Order details for " + order.getCustomerName() + ":\n");
+            for (Map.Entry<Item, Integer> entry : order.getItemQuantity().entrySet()) {
+                writer.write("Item: " + entry.getKey().getName() + ", Quantity: " + entry.getValue());
+                writer.newLine();
+            }
+            writer.write("Special Request: " + (order.getSpecialRequest() != null ? order.getSpecialRequest() : "None"));
+            writer.newLine();
+            writer.write("------------");
+            writer.newLine();
+
+            System.out.println("Order history saved for " + email);
+        } catch (IOException e) {
+            System.out.println("ERROR! Cannot save the order history! " + e.getMessage());
+        }
+    }
+
+
+}
