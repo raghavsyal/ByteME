@@ -26,22 +26,21 @@ public class FileHandling {
         }
     }
 
-    public static void saveCart(String email, Map<Item, Integer> cartContents) {
+    public static void saveCart(String email, Map<Item, Integer> cartFromUser) {
         File directory = new File("temporaryCart");
         File cartFile = new File(directory, email + "_cart.txt");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(cartFile))) {
-            for (Map.Entry<Item, Integer> entry : cartContents.entrySet()) {
+            for (Map.Entry<Item, Integer> entry : cartFromUser.entrySet()) {
                 writer.write(entry.getKey().getName() + "," + entry.getValue());
                 writer.newLine();
             }
-            System.out.println("Cart updated in file for user: " + email);
         } catch (IOException e) {
             System.out.println("Error saving cart data: " + e.getMessage());
         }
     }
 
     public static void clearCartFile(String email) {
-        File cartFile = new File("temporaryCarts/" + email + "_cart.txt");
+        File cartFile = new File("temporaryCart/" + email + "_cart.txt");
         if (cartFile.exists() && cartFile.delete()) {
             System.out.println("Temporary cart file deleted for: " + email);
         } else {

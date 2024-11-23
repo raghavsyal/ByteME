@@ -281,6 +281,7 @@ public class Admin extends User{
         }
         System.out.println("----------------------------------------------");
         System.out.printf("|  Total Sales   |              |   %-8d |\n", totalSales);
+        System.out.println("----------------------------------------------");
     }
 
 //    public List<Item> getMenu() {

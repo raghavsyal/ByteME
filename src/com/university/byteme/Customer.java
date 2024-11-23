@@ -80,6 +80,8 @@ public class Customer extends User{
                 }
             }
         }
+        FileHandling.saveCart(this.getEmail(), cart.getItemQuantity());
+
     }
 
     public void updateCart() {
@@ -96,11 +98,13 @@ public class Customer extends User{
             if (entry.getKey().getName().equalsIgnoreCase(itemName)) {
                 if (newQuantity==0){
                     cart.removeItem(item);
+                    FileHandling.saveCart(this.getEmail(), cart.getItemQuantity());
 //                    System.out.println("inside remove from cart");
                     return;
                 }
                 cart.getItemQuantity().put(entry.getKey(), newQuantity);
                 System.out.println("Quantity updated successfully.");
+                FileHandling.saveCart(this.getEmail(), cart.getItemQuantity());
                 return;
             }
         }
@@ -112,6 +116,7 @@ public class Customer extends User{
     public void removeFromCart(){
 //      print myCart, input itemname to remove, iterate over myCart, if name matches remove it
         cart.removeItem();
+        FileHandling.saveCart(this.getEmail(), cart.getItemQuantity());
     }
 
     public void viewMyCart(){
@@ -132,6 +137,7 @@ public class Customer extends User{
     }
     public void clearMyCart(){
         cart.clearCart();
+        FileHandling.saveCart(this.getEmail(), cart.getItemQuantity());
     }
     public void placeMyOrder(List<Orders> pendingOrders){
         if (cart.getItemQuantity().isEmpty()) {
@@ -142,6 +148,7 @@ public class Customer extends User{
         pendingOrders.add(order);
         System.out.println("Placing order for " + this.getEmail());
         cart.clearCart();
+        FileHandling.clearCartFile(this.getEmail());
         this.specialRequest="";
         System.out.println("Order placed successfully");
         displayBill(order);
