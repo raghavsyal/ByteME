@@ -54,17 +54,18 @@ public class Admin extends User{
             System.out.println("Item: "+item.getName()+" Price: "+item.getPrice()+" Available: "+(item.isAvailable() ? "Yes" : "No"));
         }
         System.out.println("1. Update name\n2. Update Price\n3. Update Availability\n0. Exit");
-        //if (item.getName().equals())
+
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter choice: ");
         int choice = sc.nextInt();
+        sc.nextLine();
         if (choice==1){
             System.out.print("Enter item name to update its name: ");
             String name = sc.nextLine().trim();
             for (Item items: menuList){
                 if (items.getName().equalsIgnoreCase(name)){
                     System.out.print("Enter new name: ");
-                    String newName = sc.next();
+                    String newName = sc.nextLine().trim();
                     items.setName(newName);
                 }
             }
@@ -75,6 +76,7 @@ public class Admin extends User{
                 if (items.getName().equalsIgnoreCase(name)){
                     System.out.print("Enter new price: ");
                     int newPrice = sc.nextInt();
+                    sc.nextLine();
                     items.setPrice(newPrice);
                 }
             }
@@ -85,7 +87,7 @@ public class Admin extends User{
             for (Item items: menuList){
                 if (items.getName().equalsIgnoreCase(name)){
                     System.out.print("change availability (enter yes/no): ");
-                    String availability = sc.next();
+                    String availability = sc.nextLine().trim();
                     if (availability.equals("yes")){
                         items.setAvailable(true);
                     } else if (availability.equals("no")) {
