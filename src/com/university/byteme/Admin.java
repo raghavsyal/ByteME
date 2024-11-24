@@ -193,6 +193,7 @@ public class Admin extends User{
         if (orderProcess != null) {
             pendingOrdersFromMain.remove(orderProcess);
             completeOrdersFromMain.add(orderProcess);
+            FileHandling.savePendingOrder(pendingOrdersFromMain, customersFromMain);
             System.out.println("Order for " + orderProcess.getCustomerName() + " has been completed.");
             FileHandling.saveOrderHistory(orderProcess.getCustomerName(), orderProcess);
         }

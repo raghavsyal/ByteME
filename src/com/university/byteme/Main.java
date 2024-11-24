@@ -171,7 +171,7 @@ public class Main {
             } else if (choice==7) {
                 customer.updateCart();
             } else if (choice==8) {
-                customer.placeMyOrder(pendingOrders);
+                customer.placeMyOrder(pendingOrders, customers);
             } else if (choice==9) {
                 customer.viewPendingOrder(pendingOrders);
             }else if (choice==10) {

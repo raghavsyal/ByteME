@@ -139,7 +139,7 @@ public class Customer extends User{
         cart.clearCart();
         FileHandling.saveCart(this.getEmail(), cart.getItemQuantity());
     }
-    public void placeMyOrder(List<Orders> pendingOrders){
+    public void placeMyOrder(List<Orders> pendingOrders, List<Customer> customersFromMain){
         if (cart.getItemQuantity().isEmpty()) {
             System.out.println("Cart is empty. Please add items before placing an order.");
             return;
@@ -152,6 +152,7 @@ public class Customer extends User{
         this.specialRequest="";
         System.out.println("Order placed successfully");
         displayBill(order);
+        FileHandling.savePendingOrder(pendingOrders, customersFromMain);
     }
 
     private void displayBill(Orders order) {

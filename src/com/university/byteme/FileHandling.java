@@ -52,4 +52,37 @@ public class FileHandling {
         }
     }
 
+    public static void savePendingOrder (List<Orders> pendingOrdersFromMain , List<Customer> customersFromMain){
+        File poFile = new File("pendingOrders.txt");
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(poFile))){
+            for (Orders orders : pendingOrdersFromMain){
+                String priority = null;
+                for (Customer customer : customersFromMain) {
+                    if (customer.getEmail().equals(orders.getCustomerName())) {
+                        priority = customer.getPriority();
+                        break;
+                    }
+                }
+
+                bw.write(orders.getCustomerName() + ","+ priority);
+                bw.newLine();
+
+                for (Map.Entry<Item, Integer> entry : orders.getItemQuantity().entrySet()){
+                    Item item = entry.getKey();
+                    int quantity = entry.getValue();
+                    int price = quantity * item.getPrice();
+                    bw.write(entry.getKey().getName() + "," + entry.getValue() + "," + price);
+                    bw.newLine();
+                }
+                bw.write(orders.getSpecialRequest() != null ? orders.getSpecialRequest() : "None");
+                bw.newLine();
+                bw.newLine();
+            }
+        }
+        catch (IOException e) {
+            System.out.println("Error saving pending orders: " + e.getMessage());
+        }
+    }
+
 }
