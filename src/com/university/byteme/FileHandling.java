@@ -85,4 +85,18 @@ public class FileHandling {
         }
     }
 
+
+    public static void addToMenuFile(List<Item> menuList){
+        File mf = new File("menuFile.txt");
+
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(mf))){
+            for (Item item : menuList){
+                bw.write(item.getName() + "," + item.getPrice() + "," + (item.isAvailable() ? "Available" : "OutOfStock") + "," + item.getCategory());
+                bw.newLine();
+            }
+        }
+        catch (IOException e){
+            System.out.println("Error saving menu "+e.getMessage());
+        }
+    }
 }

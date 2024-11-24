@@ -26,6 +26,9 @@ public class Main {
         menu.add(new Item("Momos", 60, true, "snacks"));
         menu.add(new Item("Mojito", 60, true, "beverages"));
         menu.add(new Item("Coffee", 35, true, "beverages"));
+
+        FileHandling.addToMenuFile(menu);
+
         while (true){
             System.out.println("1. Login as Admin\n2. Login as Customer\n0. Exit");
             System.out.println("Enter choice: ");

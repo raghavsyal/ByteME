@@ -45,6 +45,8 @@ public class Admin extends User{
         Item item = new Item(name, price, true, category);
         menuList.add(item);
         System.out.println(item.getName() + " added to the menu.");
+
+        FileHandling.addToMenuFile(menuList);
     }
     public void updateItem(List<Item> menuList){
         System.out.println("        Menu");
@@ -58,9 +60,9 @@ public class Admin extends User{
         int choice = sc.nextInt();
         if (choice==1){
             System.out.print("Enter item name to update its name: ");
-            String name = sc.next();
+            String name = sc.nextLine().trim();
             for (Item items: menuList){
-                if (items.getName().equals(name)){
+                if (items.getName().equalsIgnoreCase(name)){
                     System.out.print("Enter new name: ");
                     String newName = sc.next();
                     items.setName(newName);
@@ -68,9 +70,9 @@ public class Admin extends User{
             }
         } else if (choice==2) {
             System.out.print("Enter item name to update its price: ");
-            String name = sc.next();
+            String name = sc.nextLine().trim();
             for (Item items: menuList){
-                if (items.getName().equals(name)){
+                if (items.getName().equalsIgnoreCase(name)){
                     System.out.print("Enter new price: ");
                     int newPrice = sc.nextInt();
                     items.setPrice(newPrice);
@@ -79,7 +81,7 @@ public class Admin extends User{
 
         } else if (choice==3) {
             System.out.print("Enter item name to update its availability: ");
-            String name = sc.next();
+            String name = sc.nextLine().trim();
             for (Item items: menuList){
                 if (items.getName().equalsIgnoreCase(name)){
                     System.out.print("change availability (enter yes/no): ");
@@ -97,6 +99,8 @@ public class Admin extends User{
 
         }
 
+        FileHandling.addToMenuFile(menuList);
+
     }
     public void removeItem(List<Item> menuList){
         System.out.println("Menu");
@@ -105,21 +109,28 @@ public class Admin extends User{
         }
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter item name: ");
-        String name = sc.next();
+        String name = sc.nextLine().trim();
 //        for (Item items : menuList) {
 //            if (items.getName().equals(name)) {
 //                menuList.remove(items);
 //            }
 //        }
         Iterator<Item> iterator = menuList.iterator();
-
+        boolean itemRemoved = false;
         while (iterator.hasNext()) {
             Item item = iterator.next();
-            if (item.getName().equals(name)) {
+            if (item.getName().equalsIgnoreCase(name)) {
                 iterator.remove();
                 System.out.println(name+" removed successfully.");
-                return;
+                itemRemoved=true;
+                break;
+
             }
+        }
+        if (itemRemoved) {
+            FileHandling.addToMenuFile(menuList);
+        }else {
+            System.out.println("Item not found in the menu.");
         }
     }
     public void viewPendingOrders(List<Orders> pendingOrdersFromMain, List<Customer> customersFromMain){
