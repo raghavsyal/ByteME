@@ -11,7 +11,10 @@ import java.util.List;
 public class GUI {
 
     private JFrame frame;
-    private JPanel homePanel, menuPanel, pendingPanel;
+    private JPanel homePanel;
+    private JPanel menuPanel;
+    private JPanel pendingPanel;
+
     private CardLayout cardLayout;
 
     private List<String> menuList;

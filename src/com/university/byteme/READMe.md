@@ -35,6 +35,13 @@
     - when customer views a cart, they can add a request there only, and admin can see the request when looking at the orders 
     instead of making another function to handle requests as it makes more sense to see the requests along with the order.
 
+    - once CLI is closed, pendingOrders are saved and then we can run GUI, but when we restart the CLI, then we are writing over the pending orders 
+    txt file again and not appending (bool append is not set to true.).
+
+    - same thing is happening with all the txt files, in one run, everything written will get added in the right format, the moment we run the CLI
+    again then we are writing over the previous saved data and not appending it as now it is a new cycle as it wasn't mentioned that when restarting
+    the CLI, the content of previous cycle of CLI should remain in new cycle.
+
 ### When admin generates daily sales report, i have printed a table kind of thing in which quantity is also shown, something like this
 
 | Item            | Quantity | Cost    |
@@ -49,3 +56,28 @@
 **so most popular item can be seen from the table itself**  
 
 #### Reviews are anonymous, customers can see all reviews and can also submit a review
+
+### Credits
+    - https://www.javatpoint.com/junit-tutorial
+    - the above link is from where saw about the junit testing
+
+    - https://docs.oracle.com/javase/8/docs/api/index.html?java/io/BufferedWriter.html
+    - https://docs.oracle.com/javase/8/docs/api/java/io/InputStreamReader.html
+    - the above link is from where studied about the bufferedwriter and took this line of code
+         BufferedReader in new BufferedReader(new InputStreamReader(System.in));
+
+    - https://docs.oracle.com/cd/F17745_01/sites/12.2.1.3/wcseb/JAVA/Utilities_readFile.html
+    - read about readfile method from this
+
+    - https://docs.oracle.com/javase/8/docs/api/?java/io/File.html
+    - file object from this site to write 
+
+        public static void saveOrderHistory(String email, Orders order) {
+        File directory = new File("orderHistory");
+        File userFile = new File(directory, email + ".txt");
+
+    - https://docs.oracle.com/javase/8/docs/api/?java/io/FileReader.html
+    - file reader from this
+
+    - https://docs.oracle.com/javase/8/docs/api///?java/io/FileWriter.html
+    - filewriter from this
