@@ -109,6 +109,8 @@ public class GUI {
 
     private String formatItemDetails(String item) {
         String[] parts = item.split(",");
+        // parts is basically for no. of splits
+        // 0th - itemname, 1st - price, 2nd - availability
         if (parts.length >= 3) {
             return String.format("- %s (Price: %s, %s)", parts[0].trim(), parts[1].trim(), parts[2].trim());
         }

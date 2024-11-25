@@ -64,6 +64,7 @@
     - https://docs.oracle.com/javase/8/docs/api/index.html?java/io/BufferedWriter.html
     - https://docs.oracle.com/javase/8/docs/api/java/io/InputStreamReader.html
     - the above link is from where studied about the bufferedwriter and took this line of code
+
          BufferedReader in new BufferedReader(new InputStreamReader(System.in));
 
     - https://docs.oracle.com/cd/F17745_01/sites/12.2.1.3/wcseb/JAVA/Utilities_readFile.html
