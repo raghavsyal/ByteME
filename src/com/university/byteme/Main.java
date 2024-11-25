@@ -80,6 +80,34 @@ public class Main {
         return null;
     }
 
+    static String loginCheck (String email, String password){
+        if (email == null || email.isEmpty()) {
+            return "Invalid";
+        }
+        for (Customer customer: customers){
+            if (customer.getEmail().equals(email)){
+                if (customer.checkPassword(password)) {
+                    return "Valid";
+                }
+
+            }
+
+        }
+        return "Invalid";
+    }
+
+    static String loginCheckForAdmin(String email, String password){
+        if (email == null || email.isEmpty()) {
+            return "Invalid";
+        }
+        if (email.equals(admin.getEmail())) {
+            if (admin.checkPassword(password)) {
+                return "Valid";
+            }
+        }
+        return "Invalid";
+    }
+
     static Customer loginAsCustomer(){
         Scanner input = new Scanner(System.in);
         System.out.println("Enter email: ");
@@ -190,4 +218,7 @@ public class Main {
             }
         }
     }
+
+
+
 }
