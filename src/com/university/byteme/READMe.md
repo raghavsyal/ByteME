@@ -42,6 +42,11 @@
     again then we are writing over the previous saved data and not appending it as now it is a new cycle as it wasn't mentioned that when restarting
     the CLI, the content of previous cycle of CLI should remain in new cycle.
 
+    - buttons for navigation
+        - instead of a menu to pending button, I made 3 panels (Home, Menu, Pending). 
+        - In Home, there are 2 buttons (Menu and Pending Orders), when we choose menu, there is a back button on menu screen
+        to come back to home screen, same way, when we go to pending orders screen, we can come to home by a back button.
+
 ### When admin generates daily sales report, i have printed a table kind of thing in which quantity is also shown, something like this
 
 | Item            | Quantity | Cost    |

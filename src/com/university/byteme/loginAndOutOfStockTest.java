@@ -2,16 +2,15 @@ package com.university.byteme;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-
 import static org.junit.Assert.*;
 
-public class loginTest {
+public class loginAndOutOfStockTest {
     @BeforeClass
     public static void setup(){
         Main.customers.add(new Customer("abc", "abc", "vip" ));
         Main.customers.add(new Customer("def", "def", "vip" ));
         Main.customers.add(new Customer("raghav", "raghav", "regular" ));
+        Main.menu.add(new Item("Burger", 80, true, "snacks"));
     }
 
     @Test
@@ -49,4 +48,17 @@ public class loginTest {
         assertEquals("Invalid", result);
     }
 
+    @Test
+    public void canAddToCart(){
+        Item availableItem = new Item("Burger", 80, true, "snacks");
+        boolean result = Customer.outOfStock(availableItem);
+        assertTrue(result);
+    }
+
+    @Test
+    public void cannotAddToCart(){
+        Item availableItem = new Item("Pizza", 80, false, "snacks");
+        boolean result = Customer.outOfStock(availableItem);
+        assertFalse(result);
+    }
 }

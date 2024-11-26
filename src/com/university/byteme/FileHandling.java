@@ -21,7 +21,6 @@ public class FileHandling {
             }
             writer.write("Special Request: " + (order.getSpecialRequest() != null ? order.getSpecialRequest() : "None"));
             writer.newLine();
-            writer.write("------------");
             writer.newLine();
 
             System.out.println("Order history saved for " + email);

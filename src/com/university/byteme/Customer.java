@@ -64,6 +64,16 @@ public class Customer extends User{
             return;
         }
     }
+
+    public static boolean outOfStock(Item item){
+        if (item.isAvailable()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public void addToCart(List<Item> menu){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter item name: ");
